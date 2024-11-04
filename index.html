@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vicwrt</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            /* 设置高度为 100% */
+            margin: 0;
+            /* 清除默认边距 */
+            padding: 0;
+            /* 清除默认内边距 */
+            position: relative; /* 使得伪元素相对于body定位 */
+            overflow: hidden; /* 防止溢出 */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('img/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.95; /* 设置透明度，范围在0到1之间 */
+            z-index: -1; /* 确保在内容之后 */
+        }
+
+        /* 其他样式 */
+        h1 {
+            color: white;
+            /* 设置标题颜色 */
+            text-align: center;
+            /* 标题居中 */
+        }
+
+        .float-img {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .audio-player {
+            position: fixed;
+            left: 10px;
+            top: 100px;
+            z-index: 10000;
+            width: 25%;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+    <script>
+        function openAudio(url) {
+            const newWindow = window.open("", "_blank");
+            newWindow.document.write(`
+                <html>
+                <head>
+                    <title>突如其来的爱情故事</title>
+                </head>
+                <body>
+                    <h1>突如其来的爱情故事 - 小田和正</h1>
+                    <img src="img/1.jpg" alt="赤名莉香" width="300" height="200" style="float:left;margin-right:20px;">
+                    <audio controls>
+                        <source src="${url}" type="audio/mpeg">
+                        您的浏览器不支持音频元素。
+                    </audio>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+        <a href="javascript:void(0);" onclick="openAudio('music/突如其来的爱情故事 - 小田和正.mp3')">
+            <h1>突如其来的爱情故事 - 小田和正</h1>
+        </a>
+    </p>
+
+    <!-- <audio controls class="audio-player">
+        <source src="突如其来的爱情故事 - 小田和正.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio> -->
+</body>
+
+</html>
